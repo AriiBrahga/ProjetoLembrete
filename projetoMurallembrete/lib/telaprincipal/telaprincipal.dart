@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //Lista Dinâmica para armazenamento
+
 
   //Referenciar a coleção do Firestore
   late CollectionReference murais;
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   //
 
   exibirItemColecao(item) {
-    String nome = item.data()['mural'];
+    String mural = item.data()['mural'];
     return Card(
       //
       //Formatando o Card
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
 
       child: ListTile(
         title: Text(
-          nome,
+          mural,
           style: TextStyle(fontSize: 20),
         ),
         onTap: () {
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-          //padding: EdgeInsets.all(30),
+          
 
           stream: murais.snapshots(),
           builder: (context, snapshot) {
@@ -114,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                 final dados = snapshot.requireData;
 
                 return ListView.builder(
+                  padding: EdgeInsets.all(30),
                   itemCount: dados.size,
                   itemBuilder: (context, index) {
                     SizedBox(height: 30);

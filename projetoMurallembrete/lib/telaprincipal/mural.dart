@@ -9,6 +9,7 @@ class AdicionarMural extends StatefulWidget {
 }
 
 class _AdicionarMuralState extends State<AdicionarMural> {
+  
   var txtMural = TextEditingController();
 
   getDocumentById(id) async {
@@ -19,9 +20,7 @@ class _AdicionarMuralState extends State<AdicionarMural> {
 
   @override
   Widget build(BuildContext context) {
-    //
-    // RECUPERAR o ID do Café que foi selecionado pelo usuário
-    //
+    
     var id = ModalRoute.of(context)?.settings.arguments;
 
     if (id != null) {
@@ -67,7 +66,7 @@ class _AdicionarMuralState extends State<AdicionarMural> {
                         FirebaseFirestore.instance.collection('murais').add({
                           'mural': txtMural.text,
                         });
-                      } else {
+                      }else {
                         //
                         // ATUALIZAR UM DOCUMENTO EXISTENTE
                         //

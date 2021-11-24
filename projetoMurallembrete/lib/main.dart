@@ -7,7 +7,7 @@ import 'package:projeto_murallembrete/ajuda.dart';
 import 'package:projeto_murallembrete/config.dart';
 import 'package:projeto_murallembrete/sobre.dart';
 import 'package:projeto_murallembrete/telaprincipal/telaprincipal.dart';
-import 'lembrete.dart';
+import 'telalembrete/lembrete.dart';
 import 'login.dart';
 import 'registro.dart';
 import 'ajuda.dart';
@@ -23,7 +23,7 @@ Future<void> main() async {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Mural',
-      initialRoute: 'login',
+      initialRoute: 'telaPrincipal',
       routes: {
         'login': (context) => Login(),
         'registro': (context) => Registro(),
