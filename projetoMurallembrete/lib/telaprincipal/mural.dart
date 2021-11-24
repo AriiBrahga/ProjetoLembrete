@@ -65,7 +65,7 @@ class _AdicionarMuralState extends State<AdicionarMural> {
                     onPressed: () {
                       if (id == null) {
                         FirebaseFirestore.instance.collection('murais').add({
-                          'mural': txtMural,
+                          'mural': txtMural.text,
                         });
                       } else {
                         //
@@ -75,14 +75,14 @@ class _AdicionarMuralState extends State<AdicionarMural> {
                             .collection('murais')
                             .doc(id.toString())
                             .set({
-                          'mural': txtMural,
+                          'mural': txtMural.text,
                         });
                       }
 
                       setState(() {
                         var msg = '';
                         if (txtMural.text.isNotEmpty) {
-                          
+                          txtMural.clear();
 
                           msg = 'Mural adicionado com sucesso!';
                         } else {
@@ -96,7 +96,6 @@ class _AdicionarMuralState extends State<AdicionarMural> {
                         );
                         Navigator.pop(context);
                       });
-                      
                     },
                   ),
                   TextButton(
