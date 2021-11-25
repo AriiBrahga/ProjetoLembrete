@@ -14,8 +14,23 @@ class _AddLembreteState extends State<AddLembrete> {
   var txtTitulo = TextEditingController();
   var txtDescricao = TextEditingController();
 
+  getDocumentById(id) async {
+    await FirebaseFirestore.instance.collection('').doc(id).get().then((doc) {
+      txtTitulo.text = doc.get('Titulo');
+      txtDescricao.text = doc.get('Descricao');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var id = ModalRoute.of(context)?.settings.arguments;
+
+    if (id != null) {
+      if (txtTitulo.text.isEmpty) {
+        getDocumentById(id);
+      }
+    }
+
     return FloatingActionButton(
       backgroundColor: Colors.deepPurple[800],
       child: Icon(Icons.add),
@@ -75,11 +90,22 @@ class _AddLembreteState extends State<AddLembrete> {
                   TextButton(
                     child: Text('OK'),
                     onPressed: () {
-                      FirebaseFirestore.instance.collection('lembretes').add({
-                        'Titulo': txtTitulo.text,
-                        'Descricao': txtDescricao.text,
-                        'mural': widget.muralId,
-                      });
+                      if (id == null) {
+                        FirebaseFirestore.instance.collection('lembretes').add({
+                          'Titulo': txtTitulo.text,
+                          'Descricao': txtDescricao.text,
+                          'mural': widget.muralId,
+                        });
+                      } else {
+                        FirebaseFirestore.instance
+                            .collection('murais')
+                            .doc(id.toString())
+                            .set({
+                          'Titulo': txtTitulo.text,
+                          'Descricao': txtDescricao.text,
+                          'mural': widget.muralId,
+                        });
+                      }
 
                       setState(() {
                         var msg = '';

@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_murallembrete/telalembrete/addlembrete.dart';
-
 import '../drawer.dart';
 
 class Lembretes extends StatefulWidget {
   final String muralId;
-
   const Lembretes(this.muralId, {Key? key}) : super(key: key);
 
   @override
@@ -15,7 +13,6 @@ class Lembretes extends StatefulWidget {
 
 class _LembretesState extends State<Lembretes> {
   var lembretes;
-
   @override
   void initState() {
     super.initState();
@@ -61,9 +58,10 @@ class _LembretesState extends State<Lembretes> {
                         onPressed: () {
                           
                           setState(() {
-                            
-                            
-                            //lembretes.doc(item.id).delete();
+                            FirebaseFirestore.instance
+                              .collection('lembretes')
+                              .doc(item.id)
+                              .delete();
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -83,6 +81,7 @@ class _LembretesState extends State<Lembretes> {
                 );
               });
         },
+        
       ),
     );
   }
@@ -98,7 +97,7 @@ class _LembretesState extends State<Lembretes> {
         backgroundColor: Colors.deepPurple[800],
         centerTitle: true,
         title: Text(
-          'LEMBRETE', //AQUI VAMOS TRABALHAR COM DADOS, COLOCADOS NO NOME DO MURAL.
+          'LEMBRETES'  ,  //AQUI VAMOS TRABALHAR COM DADOS, COLOCADOS NO NOME DO MURAL.
           style: TextStyle(
             letterSpacing: 7,
             fontWeight: FontWeight.bold,
@@ -107,7 +106,7 @@ class _LembretesState extends State<Lembretes> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-          //padding: EdgeInsets.all(30),
+          
 
           stream: lembretes.snapshots(),
           builder: (context, snapshot) {
