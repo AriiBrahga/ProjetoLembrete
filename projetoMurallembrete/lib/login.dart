@@ -24,29 +24,22 @@ class _LoginState extends State<Login> {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
+              SizedBox(height: 30),
               Center(
                 child: Image(
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height / 2.8,
-                  image: AssetImage('images/logo_MyWall.png'), //////////////////////// 
+                  image: AssetImage('images/New_oficial.png'), //////////////////////// 
                   fit: BoxFit.cover,
                 ),
               ),
               SizedBox(height: 30),
-              /*Text(
-                'MyWall',
-                style: TextStyle(
-                  color: Colors.deepPurple[800],
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.5,
-                ),
-              ), */
+              
               SizedBox(
                 height: 10.0,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextField(
                   controller: email,
                   decoration: InputDecoration(
@@ -65,7 +58,7 @@ class _LoginState extends State<Login> {
                 height: 20.0,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextField(
                   controller: senha,
                   decoration: InputDecoration(
@@ -92,7 +85,7 @@ class _LoginState extends State<Login> {
                   login(email.text, senha.text);
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 60),
+                  margin: EdgeInsets.symmetric(horizontal: 90),
                   alignment: Alignment.center,
                   height: 45,
                   decoration: BoxDecoration(

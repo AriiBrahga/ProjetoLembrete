@@ -56,11 +56,21 @@ class Sobre extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  child: CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: NetworkImage(
-                        'https://scontent.frao3-1.fna.fbcdn.net/v/t1.6435-9/241018069_2452835041526804_2143297338244589728_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=k8rNimWghzgAX_7zv6O&_nc_ht=scontent.frao3-1.fna&oh=d4fa5aa1139750e99414d45b42f0d50c&oe=617BC2D0'),
-                  ),
+                  height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 3, 
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      child: ClipOval(
+                        child: Image(
+                          image: AssetImage('images/arielson.jpeg'),
+                            fit: BoxFit.cover,
+                        ),
+                      ),
                 ),
                 Text(
                   'ARIELSON DA SILVA BRAGA',
@@ -81,12 +91,23 @@ class Sobre extends StatelessWidget {
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
                 Container(
-                  child: CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: NetworkImage(
-                        'https://scontent.frao3-1.fna.fbcdn.net/v/t31.18172-8/17240001_1287960207965010_1786169039635844643_o.jpg?_nc_cat=107&ccb=1-5&_nc_sid=ad2b24&_nc_ohc=LR1bhxX5cn8AX_LYnzY&tn=iT8oamy478Nu0FXC&_nc_ht=scontent.frao3-1.fna&oh=bd62e3f78a158912e5fbae460a8e0a98&oe=617CEB4D'),
+                  height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 3, 
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      child: ClipOval(
+                        child: Image(
+                          image: AssetImage('images/pano.jpeg'),
+                            fit: BoxFit.cover,
+                        ),
+                      ),
                   ),
-                ),
+                
               ],
             ),
           ],

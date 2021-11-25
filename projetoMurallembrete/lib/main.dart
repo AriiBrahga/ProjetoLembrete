@@ -23,7 +23,7 @@ Future<void> main() async {
       ),
       debugShowCheckedModeBanner: false,
       title: 'Mural',
-      initialRoute: 'login',
+      initialRoute: 'telaPrincipal',
       routes: {
         'login': (context) => Login(),
         'registro': (context) => Registro(),

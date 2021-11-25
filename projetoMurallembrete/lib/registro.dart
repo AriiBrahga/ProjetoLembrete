@@ -21,11 +21,13 @@ class _RegistroState extends State<Registro> {
         child: Container(
             height: MediaQuery.of(context).size.height,
             child: Column(children: [
+              SizedBox(height: 15),
               Center(
+                
                 child: Image(
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height / 4,
-                  image: AssetImage('images/logo_MyWall.png'),
+                  image: AssetImage('images/New_oficial.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -45,7 +47,7 @@ class _RegistroState extends State<Registro> {
                 height: 30,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextField(
                   controller: usuario,
                   decoration: InputDecoration(
@@ -64,7 +66,7 @@ class _RegistroState extends State<Registro> {
                 height: 30,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextField(
                   controller: email,
                   decoration: InputDecoration(
@@ -83,7 +85,7 @@ class _RegistroState extends State<Registro> {
                 height: 30,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextField(
                   controller: senha,
                   decoration: InputDecoration(
@@ -103,7 +105,7 @@ class _RegistroState extends State<Registro> {
                 height: 30,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 child: TextField(
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(vertical: 15),
