@@ -5,20 +5,24 @@ import 'package:projeto_murallembrete/telalembrete/addlembrete.dart';
 import '../drawer.dart';
 
 class Lembretes extends StatefulWidget {
-  const Lembretes({Key? key}) : super(key: key);
+  final String muralId;
+
+  const Lembretes(this.muralId, {Key? key}) : super(key: key);
 
   @override
   _LembretesState createState() => _LembretesState();
 }
 
 class _LembretesState extends State<Lembretes> {
-  late CollectionReference lembretes;
+  var lembretes;
 
   @override
   void initState() {
     super.initState();
 
-    lembretes = FirebaseFirestore.instance.collection('lembretes');
+    lembretes = FirebaseFirestore.instance
+        .collection('lembretes')
+        .where('mural', isEqualTo: widget.muralId);
   }
 
   //
@@ -55,8 +59,11 @@ class _LembretesState extends State<Lembretes> {
                     TextButton(
                         child: Text('Sim'),
                         onPressed: () {
+                          
                           setState(() {
-                            lembretes.doc(item.id).delete();
+                            
+                            
+                            //lembretes.doc(item.id).delete();
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -82,8 +89,6 @@ class _LembretesState extends State<Lembretes> {
 
   @override
   Widget build(BuildContext context) {
-    
-    
     return Scaffold(
       //DRAWER
 
@@ -138,8 +143,8 @@ class _LembretesState extends State<Lembretes> {
           }),
 
       //ADICIONANDO LEMBRETES NO MURAL
-      
-      floatingActionButton: AddLembrete(),
+
+      floatingActionButton: AddLembrete(widget.muralId),
     );
   }
 }

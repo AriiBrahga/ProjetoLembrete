@@ -29,7 +29,7 @@ Future<void> main() async {
         'registro': (context) => Registro(),
         'sobre': (context) => Sobre(),
         'telaPrincipal': (context) => HomePage(),
-        'telaLembrete': (context) => Lembretes(),
+        'telaLembrete': (context) => Lembretes(''),
         'telaAjuda': (context) => Ajuda(),
         'telaconfig': (context) => Configuracoes(),
       },

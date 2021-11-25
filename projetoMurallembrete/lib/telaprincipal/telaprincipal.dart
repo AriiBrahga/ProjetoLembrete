@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:projeto_murallembrete/telalembrete/lembrete.dart';
 import 'mural.dart';
 import '../drawer.dart';
 
@@ -14,8 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   //Referenciar a coleção do Firestore
   late CollectionReference murais;
 
@@ -33,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   exibirItemColecao(item) {
     String mural = item.data()['mural'];
     return Card(
+
       //
       //Formatando o Card
       //
@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(fontSize: 20),
         ),
         onTap: () {
-          Navigator.of(context)
-              .pushReplacementNamed('telaLembrete', arguments: item.id);
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (BuildContext context) => Lembretes(item.id)));
         },
         trailing: IconButton(
           icon: Icon(Icons.delete_outline),
@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
@@ -93,8 +94,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: StreamBuilder<QuerySnapshot>(
-          
-
           stream: murais.snapshots(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {

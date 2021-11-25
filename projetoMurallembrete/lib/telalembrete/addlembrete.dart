@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddLembrete extends StatefulWidget {
-  const AddLembrete({Key? key}) : super(key: key);
+  final String muralId;
+
+  const AddLembrete(this.muralId, {Key? key}) : super(key: key);
 
   @override
   _AddLembreteState createState() => _AddLembreteState();
@@ -11,30 +13,9 @@ class AddLembrete extends StatefulWidget {
 class _AddLembreteState extends State<AddLembrete> {
   var txtTitulo = TextEditingController();
   var txtDescricao = TextEditingController();
-  
-
-  /*getDocumentById(id) async {
-    await FirebaseFirestore.instance
-        .collection('')
-        .doc(id)
-        .get()
-        .then((doc) {
-      txtTitulo.text = doc.get('Titulo');
-      txtDescricao.text = doc.get('Descricao');
-      
-    });
-  }*/
 
   @override
   Widget build(BuildContext context) {
-    //var id = ModalRoute.of(context)?.settings.arguments;
-
-    /*if (id != null) {
-      if (txtTitulo.text.isEmpty) {
-        getDocumentById(id);
-      }
-    }*/
-
     return FloatingActionButton(
       backgroundColor: Colors.deepPurple[800],
       child: Icon(Icons.add),
@@ -95,24 +76,10 @@ class _AddLembreteState extends State<AddLembrete> {
                     child: Text('OK'),
                     onPressed: () {
                       FirebaseFirestore.instance.collection('lembretes').add({
-                          'Titulo': txtTitulo.text,
-                          'Descricao': txtDescricao.text,
-                        });
-                        
-                      /*if (id == null) {
-                        
-                      }else {
-                        //
-                        // ATUALIZAR UM DOCUMENTO EXISTENTE
-                        //
-                        FirebaseFirestore.instance
-                            .collection('lembretes')
-                            .doc(id.toString())
-                            .set({
-                          'Titulo': txtTitulo.text,
-                          'Descricao': txtDescricao.text,
-                        });
-                      }*/
+                        'Titulo': txtTitulo.text,
+                        'Descricao': txtDescricao.text,
+                        'mural': widget.muralId,
+                      });
 
                       setState(() {
                         var msg = '';
@@ -137,7 +104,15 @@ class _AddLembreteState extends State<AddLembrete> {
                   TextButton(
                     child: Text('Cancelar'),
                     onPressed: () {
-                      Navigator.pop(context);
+                      setState(
+                        () {
+                          if (txtTitulo.text.isNotEmpty) {
+                            txtTitulo.clear();
+                            txtDescricao.clear();
+                          }
+                          Navigator.pop(context);
+                        },
+                      );
                     },
                   ),
                 ]);
