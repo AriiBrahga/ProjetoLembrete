@@ -29,61 +29,81 @@ class _LembretesState extends State<Lembretes> {
   exibirLembretes(item) {
     String titulo = item.data()['Titulo'];
     String desc = item.data()['Descricao'];
-    return Card(
-      color: Colors.amber[300],
-      shadowColor: Colors.black,
-      elevation: 10,
-      child: ListTile(
-        title: Text(
-          titulo,
-          style: TextStyle(fontSize: 20),
-        ),
-        subtitle: Text(
-          desc,
-          style: TextStyle(fontSize: 15),
-        ),
-        onLongPress: () async {
-          await showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text(
-                    'Remover Lembrete?',
-                    style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
-                  actions: [
-                    TextButton(
-                        child: Text('Sim'),
-                        onPressed: () {
-                          
-                          setState(() {
-                            FirebaseFirestore.instance
-                              .collection('lembretes')
-                              .doc(item.id)
-                              .delete();
-
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Lembrete Removido com Sucesso'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                            Navigator.pop(context);
-                          });
-                        }),
-                    TextButton(
-                        child: Text('Não'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        }),
-                  ],
-                );
-              });
-        },
-        
+    
+    
+    
+    
+    
+    return Container(
+          decoration: BoxDecoration(
+            color: Colors.amber[300],
+            boxShadow: [
+            BoxShadow(
+            color: Colors.grey.withOpacity(0.8),
+            spreadRadius: 2,
+            blurRadius: 2,
+            offset: Offset(-2, 2), // changes position of shadow
       ),
-    );
+    ],
+  ),
+          
+          child: ListTile(
+            title: Text(
+              titulo, 
+              style: TextStyle(fontSize: 20),
+            ), 
+      
+            subtitle:
+            Text(
+              desc,
+              style: TextStyle(fontSize: 15),
+            ),
+            onLongPress: () async {
+              await showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(
+                        'Remover Lembrete?',
+                        style: TextStyle(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
+                      actions: [
+                        TextButton(
+                            child: Text('Sim'),
+                            onPressed: () {
+                              
+                              setState(() {
+                                FirebaseFirestore.instance
+                                  .collection('lembretes')
+                                  .doc(item.id)
+                                  .delete();
+      
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Lembrete Removido com Sucesso'),
+                                    duration: Duration(seconds: 2),
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              });
+                            }),
+                        TextButton(
+                            child: Text('Não'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
+                      ],
+                    );
+                  });
+            },
+            
+          ),
+        );
+        
+      
+    
+    
   }
 
   @override
@@ -126,17 +146,22 @@ class _LembretesState extends State<Lembretes> {
               default:
                 final dados = snapshot.requireData;
 
-                return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      childAspectRatio: 2.5 / 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 40),
-                  itemCount: dados.size,
-                  itemBuilder: (context, index) {
-                    SizedBox(height: 30);
-                    return exibirLembretes(dados.docs[index]);
-                  },
+                return Scaffold(
+                  body: Container(
+                    padding: EdgeInsets.all(20),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 400,
+                          childAspectRatio: 2.2 / 2,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20),
+                      itemCount: dados.size,
+                      itemBuilder: (context, index) {
+                        SizedBox(height: 30);
+                        return exibirLembretes(dados.docs[index]);
+                      },
+                    ),
+                  ),
                 );
             }
           }),

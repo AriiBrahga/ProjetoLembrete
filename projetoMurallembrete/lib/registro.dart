@@ -169,9 +169,9 @@ class _RegistroState extends State<Registro> {
       Navigator.pop(context);
     }).catchError((erro) {
       if (erro.code == 'email-already-in-use') {
-        exibirMensagem('ERRO: O email informado está em uso.');
+        exibirMensagem('O email informado está em uso.');
       } else if (erro.code == 'invalid-email') {
-        exibirMensagem('ERRO: Email inválido.');
+        exibirMensagem('Email inválido.');
       } else {
         exibirMensagem('ERRO: ${erro.message}');
       }
