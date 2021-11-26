@@ -151,11 +151,11 @@ class _LoginState extends State<Login> {
       Navigator.pushReplacementNamed(context, 'telaPrincipal');
     }).catchError((erro) {
       if (erro.code == 'user-not-found') {
-        exibirMensagem('ERRO: Usuario não encontrado.');
+        exibirMensagem('Email não cadastrado.');
       } else if (erro.code == 'wrong-password') {
-        exibirMensagem('ERRO: Senha Incorreta.');
+        exibirMensagem('Senha Incorreta.');
       } else if (erro.code == 'invalid-email') {
-        exibirMensagem('ERRO: Email Inválido.');
+        exibirMensagem('Email Inválido.');
       } else {
         exibirMensagem('ERRO: ${erro.message}.');
       }
