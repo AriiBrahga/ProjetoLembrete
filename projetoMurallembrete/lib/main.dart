@@ -19,7 +19,7 @@ Future<void> main() async {
   runApp(
     MaterialApp(
       theme: ThemeData(
-        primaryColor: Colors.deepPurple[800],
+        primaryColor: Colors.deepPurple[80],
       ),
       debugShowCheckedModeBanner: false,
       title: 'Mural',
