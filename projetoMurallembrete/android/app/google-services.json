@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "668317398037",
-    "project_id": "projetomurallembrete-f85c2",
-    "storage_bucket": "projetomurallembrete-f85c2.appspot.com"
+    "project_number": "980638038984",
+    "project_id": "mural-tcc",
+    "storage_bucket": "mural-tcc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:668317398037:android:f84d45c84537e85cd48a1c",
+        "mobilesdk_app_id": "1:980638038984:android:0a6595a7a3174144f95efd",
         "android_client_info": {
           "package_name": "com.example.projeto_murallembrete"
         }
       },
       "oauth_client": [
         {
-          "client_id": "668317398037-aeil46nso5hg8ehf3mvmq0dnn74bn01p.apps.googleusercontent.com",
+          "client_id": "980638038984-pard592i0gndb5kei8denlnj6js0b1v8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBv73NJGUBuYO7uOCWxia0yTJ5A8r07Mc8"
+          "current_key": "AIzaSyCWunM5dgkDhB-86KJl0LW15iizeiFPsjY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "668317398037-aeil46nso5hg8ehf3mvmq0dnn74bn01p.apps.googleusercontent.com",
+              "client_id": "980638038984-pard592i0gndb5kei8denlnj6js0b1v8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
