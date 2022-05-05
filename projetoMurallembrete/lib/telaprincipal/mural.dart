@@ -7,6 +7,8 @@ class AdicionarMural extends StatefulWidget {
   @override
   _AdicionarMuralState createState() => _AdicionarMuralState();
 }
+// Mudei algo extremamente importante
+
 
 class _AdicionarMuralState extends State<AdicionarMural> {
   var txtMural = TextEditingController();
