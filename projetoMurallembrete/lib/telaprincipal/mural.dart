@@ -13,7 +13,7 @@ class _AdicionarMuralState extends State<AdicionarMural> {
 
   getDocumentById(id) async {
     await FirebaseFirestore.instance.collection('').doc(id).get().then((doc) {
-      txtMural.text = doc.get('mural');
+      txtMural.text = doc.get('Mural');
     });
   }
 
@@ -26,6 +26,7 @@ class _AdicionarMuralState extends State<AdicionarMural> {
         getDocumentById(id);
       }
     }
+
     return FloatingActionButton(
       backgroundColor: Colors.deepPurple[800],
       child: Icon(Icons.add),
