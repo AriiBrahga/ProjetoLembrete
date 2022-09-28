@@ -1,8 +1,7 @@
 // ignore_for_file: unnecessary_import
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:projeto_murallembrete/telalembrete/lembrete.dart';
@@ -18,13 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //Referenciar a coleção do Firestore
-  late CollectionReference murais;
+  var murais;
 
   @override
   void initState() {
     super.initState();
 
-    murais = FirebaseFirestore.instance.collection('murais');
+    murais = FirebaseFirestore.instance.collection('murais').where('id',
+        isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString());
   }
 
   //
@@ -32,9 +32,8 @@ class _HomePageState extends State<HomePage> {
   //
 
   exibirItemColecao(item) {
-    String mural = item.data()['mural'];
+    String mural = item.data()['mural'] ?? '';
     return Card(
-
       //
       //Formatando o Card
       //
@@ -80,7 +79,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(

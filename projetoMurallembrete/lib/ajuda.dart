@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
 
 class Ajuda extends StatelessWidget {
   const Ajuda({Key? key}) : super(key: key);
