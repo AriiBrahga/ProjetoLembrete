@@ -63,7 +63,10 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             //Remover um item da lista
             setState(() {
-              murais.doc(item.id).delete();
+              FirebaseFirestore.instance
+                  .collection('murais')
+                  .doc(item.id)
+                  .delete();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Mural Removido com Sucesso'),
