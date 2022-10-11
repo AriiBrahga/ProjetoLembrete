@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
-
 class Sobre extends StatelessWidget {
   const Sobre({Key? key}) : super(key: key);
 

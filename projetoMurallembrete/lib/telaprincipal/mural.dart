@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AdicionarMural extends StatefulWidget {
@@ -66,6 +67,7 @@ class _AdicionarMuralState extends State<AdicionarMural> {
                       if (id == null) {
                         FirebaseFirestore.instance.collection('murais').add({
                           'mural': txtMural.text,
+                          'id': FirebaseAuth.instance.currentUser!.uid,
                         });
                       } else {
                         //

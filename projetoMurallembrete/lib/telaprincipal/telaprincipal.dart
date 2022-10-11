@@ -1,8 +1,7 @@
 // ignore_for_file: unnecessary_import
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:projeto_murallembrete/telalembrete/lembrete.dart';
@@ -18,13 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //Referenciar a coleção do Firestore
-  late CollectionReference murais;
+  var murais;
 
   @override
   void initState() {
     super.initState();
 
-    murais = FirebaseFirestore.instance.collection('murais');
+    murais = FirebaseFirestore.instance.collection('murais').where('id',
+        isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString());
   }
 
   //
@@ -32,18 +32,18 @@ class _HomePageState extends State<HomePage> {
   //
 
   exibirItemColecao(item) {
-    String mural = item.data()['mural'];
+    String mural = item.data()['mural'] ?? '';
     return Card(
-
       //
       //Formatando o Card
       //
 
-      color: Colors.grey.shade300,
+      color: Colors.grey,
+      margin: EdgeInsets.only(left: 30.0, right: 30.0, bottom: 20.0),
       shadowColor: Colors.black,
-      elevation: 20,
+      elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
       ),
 
       //
@@ -53,7 +53,12 @@ class _HomePageState extends State<HomePage> {
       child: ListTile(
         title: Text(
           mural,
-          style: TextStyle(fontSize: 20),
+          
+          style: TextStyle(fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+          
         ),
         onTap: () {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -64,7 +69,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             //Remover um item da lista
             setState(() {
-              murais.doc(item.id).delete();
+              FirebaseFirestore.instance.collection('murais').doc(item.id).delete();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Mural Removido com Sucesso'),
@@ -80,7 +85,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(

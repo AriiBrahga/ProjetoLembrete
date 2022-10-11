@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
-
 class Configuracoes extends StatefulWidget {
   const Configuracoes({Key? key}) : super(key: key);
 

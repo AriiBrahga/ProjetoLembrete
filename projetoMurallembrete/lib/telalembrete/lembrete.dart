@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_murallembrete/telalembrete/addlembrete.dart';
 import '../drawer.dart';
+import 'lembrete.dart';
 
 class Lembretes extends StatefulWidget {
   final String muralId;
@@ -13,14 +15,18 @@ class Lembretes extends StatefulWidget {
 
 class _LembretesState extends State<Lembretes> {
   var lembretes;
+  var titleMural;
   @override
   void initState() {
     super.initState();
 
-    lembretes = FirebaseFirestore.instance
-        .collection('lembretes')
-        .where('mural', isEqualTo: widget.muralId);
+    lembretes = FirebaseFirestore.instance.collection('lembretes').where('mural', isEqualTo: widget.muralId);
+    
+    
+    
+
   }
+
 
   //
   // FORMATANDO OS ELEMENTOS LIST
@@ -117,7 +123,7 @@ class _LembretesState extends State<Lembretes> {
         backgroundColor: Colors.deepPurple[800],
         centerTitle: true,
         title: Text(
-          'LEMBRETES'  ,  //AQUI VAMOS TRABALHAR COM DADOS, COLOCADOS NO NOME DO MURAL.
+          'LEMBRETES' ,  //AQUI VAMOS TRABALHAR COM DADOS, COLOCADOS NO NOME DO MURAL.
           style: TextStyle(
             letterSpacing: 7,
             fontWeight: FontWeight.bold,
@@ -171,4 +177,9 @@ class _LembretesState extends State<Lembretes> {
       floatingActionButton: AddLembrete(widget.muralId),
     );
   }
+}
+
+
+class FirebaseDatabase {
+  static collection(String s) {}
 }

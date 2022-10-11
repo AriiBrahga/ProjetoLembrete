@@ -16,6 +16,8 @@ class _LoginState extends State<Login> {
 
   bool isLoading = false;
 
+  get firebase => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +109,9 @@ class _LoginState extends State<Login> {
                 height: 10,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                         
+                },
                 child: Text(
                   'Esqueceu a senha?',
                   style: TextStyle(
